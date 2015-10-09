@@ -1,0 +1,260 @@
+10179 Euler Lennie L 
+Three Rivers,Michigan 
+2786290017 M  MATH 
+
+10113 Vanden Vanessa V 
+Fremont,Michigan 
+2315509237 F  HIST 
+
+10104 Andrews Peter J 
+Grand Rapids,Michigan 
+6169493301 M  CPSC 
+
+10103 Johnson James L
+Waupun,Wisconsin 
+9207345229 M   ENGR 
+
+10110 Peters Andrew J 
+Lynden,Washington
+3603239550 M  ART 
+
+10126 Aristotle Alice A 
+Chino,California 
+9093330861  F  PHIL
+
+10272 Speareshake William W 
+Grand Rapids,Michigan 
+6162410744 M   ENGL 
+
+10144 Lucky, Lucy L 
+Grandville,Michigan 
+6167745424 F   HIST
+
+10191 Nakamura Toky O 
+Chicago,Illinois 
+7734249665 F   SOCI 
+
+10226 Freud Fred E 
+Lynden,Washington
+3608340115 M   PSYC 
+
+10274 Tchaikovsky Wolfgang A 
+Byron Center,Michigan 
+2538845115 M   MUSC 
+
+10284 Orange Dutch V
+Graafschaap,Michigan 
+3133141660 M  ENGR 
+
+10297 Caesar Julie S 
+Denver,Colorado 
+7204470338 F   HIST
+ 
+10422 Gestalt Gloria G
+Wheaton,Illinois 
+6306631212 F   PSYC 
+
+10339 Dewey Johanna A 
+Salt Lake City,Utah 
+8016841129 F   EDUC 
+
+10298 Psycho Prunella E 
+De Motte,Indiana 
+2195384609 F   PSYC 
+
+10307 Mendelssohn Mozart W
+Peoria,Illinois 
+3092410747 M   MUSC 
+
+10301 Bull Sitting U
+Gallup,New Mexico 
+5056632997 M   EDUC 
+
+10302 Custer General G 
+Badlands,South Dakota 
+6055552995 M   HIST 
+
+10303 Fahrenheit Felicia O 
+Sheboygan,Wisconsin 
+9205154997 F   CHEM
+ 
+10304 Deutsch Sprechen Z 
+Sparta,Michigan 
+6168861201 F   GERM 
+
+10310 Augusta Ada B
+Lakewood,California 
+5627172339 F   CPSC 
+
+10319 Gauss Carl F
+Yorktown,Pennsylvania 
+7173385494 M   MATH 
+
+10323 Kronecker Leo P 
+Traverse City,Michigan 
+2316763991 M   MATH
+
+10330 Issacson Jacob A 
+Silver Springs,Maryland 
+2404847932 M   RELI
+ 
+10331 Issacson Esau B 
+Silver Springs,Maryland 
+2404847932 
+M  25 2.98 RELI 
+
+10348 Virus Vera W
+Saginaw,Michigan 
+9896634401 F   CPSC 
+
+10355 Zylstra Zelda A
+Downs,Kansas 
+7857514008 F   ENGL
+
+10377 Porgy Bess N 
+Columbus,Ohio 
+6144841771 F   MUSI 
+
+10389 Newmann Alfred E 
+Cheyenne,Wyoming 
+3077712399 M   EDUC 
+
+10395 Medes Archie L 
+Whitinsville,Maryland 
+6179294401 M   ENGR
+ 
+10406 Macdonald Ronald B 
+Seattle,Washington 
+2065582911 M   CPSC 
+
+10415 Aardvark Anthony A 
+Grandville,Michigan 
+6165325912 M   ENGR 
+
+10431 GotoDijkstra Edgar G
+Cawker City,Kansas 
+7856349971 M   CPSC 
+
+10448 Rembrandt Roberta E 
+Sioux Center,Iowa 
+7122408113 F   ART 
+
+10458 Shoemaker Imelda M 
+Honolulu,Hawaii 
+8089193001 F   POLS 
+
+10467 Marx Karl Z 
+Hawthorne,New_Jersey 
+9735513915 M   ECON
+
+10470 Scrooge Ebenezer T 
+Troy,Michigan 
+2488134001 M   SOCI
+
+10482 Nightingale Florence K 
+Rochester,New_York 
+5857175118 F   NURS
+ 
+10490 Gazelle Gwendolyn D 
+Chino,California 
+9093132446 F   PE 
+
+10501 Pasteur Louise A 
+Window Rock,Arizona 
+9284245170 F   BIOL
+ 
+10519 Elba Able M 
+Bozeman,Montana 
+4068183226 M   SPEE 
+
+10511 Lewis Clark N 
+New Era,Michigan 
+2316461125 M   GEOG 
+
+10515 Mouse Michael E
+Boise,Idaho
+2085132771 M   EDUC
+
+10523 Pavlov Bowser T
+Farmington,Michigan 
+2489421753 F  PSYCH 
+
+10530 Chicita Juanita A
+Oklahoma City,Oklahoma 
+4053714377 F   BIOL
+
+10538 Busch Arch E 
+St Louis,Missouri 
+3148354112 M   ENGR 
+
+10547 Fault Paige D 
+Petoskey,Michigan 
+2314543116 F   CPSC 
+
+10553 Santamaria Nina P
+Plymouth,Massachusetts 
+5082351181 F   HIST 
+
+10560 Shyster Samuel D 
+Everglades,Florida 
+2394421885 M   SOCI
+ 
+10668 Einstein Alfred M 
+Newark,New Jersey 
+8623710225 M   ENGR 
+
+10582 Yewliss Cal C
+Rudyard,Michigan 
+9063451220 M   MATH 
+
+10590 Atanasoff Eniac C 
+Springfield,Illinois 
+3126142449 F   CPSC 
+
+10597 Rockne Newton K 
+New York,New York 
+9174631744 M   PE 
+
+10610 Roosevelt Rose Y 
+Spring Lake,Michigan 
+6169491221 F  POLS
+
+10623 Xerxes Art I 
+Cincinnati,Ohio 
+5133701228 M   GREE 
+
+10629 Leibniz Gottfried W 
+Boulder,Colorado 
+3035140228 M   MATH 
+
+10633 Vespucci Vera D
+Ripon,California 
+2094341883 F   GEOG
+
+10648 Principal Pamela P 
+Albany,New York 
+5187145513 F   EDUC 
+
+10652 Cicero Marsha R 
+Rapid City,South Dakota 
+6053335910 F   LATI 
+
+10657 Weerd Dewey L 
+Detroit,Michigan 
+3134841962 M   PHIL
+
+10663 Hochschule Hortense C 
+Lincoln,Nebraska 
+4027120111 F   EDUC
+
+10675 Fibonacci Leonard O 
+Nashville,Tennessee 
+6154921107 M   MATH
+
+10682 Angelo Mike L
+Austin,Texas 
+5125132201 M   ART
+
+10688 Pascal Blaze R
+Brooklyn,New York 
+7187412993 M   CPSC
