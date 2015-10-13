@@ -6,16 +6,27 @@ public class TaughtCourse extends Course {
 	private Semester semesterID;
 	private Section sectionID;
 
+	public TaughtCourse(Course c, Integer year, Semester semesterID,
+			Section sectionID, Integer teacherID) throws NullPointerException,
+			InvalidDataException {
+		this(c.getCourseID(), c.getDescription(), c.getNumCredits(), c
+				.getDepartmentID(), year, semesterID, sectionID, teacherID);
+	}
+
 	public TaughtCourse(String courseID, String description,
 			Integer numCredits, String departmentID, Integer year,
 			Semester semesterID, Section sectionID, Integer teacherID)
 			throws NullPointerException, InvalidDataException {
 		super(courseID, description, numCredits, departmentID);
 		// TODO Auto-generated constructor stub
-		this.teacherID= teacherID;
-		this.year= year;
-		this.semesterID= semesterID;
-		this.sectionID= sectionID;
+		if (teacherID == null || year == null || semesterID == null
+				|| sectionID == null) {
+			throw new NullPointerException();
+		}
+		this.teacherID = teacherID;
+		this.year = year;
+		this.semesterID = semesterID;
+		this.sectionID = sectionID;
 	}
 
 	public Integer getTeacherID() {

@@ -30,14 +30,20 @@ public class Person {
 		this.lastName = lastName;
 		this.midInitial = midInitial;
 		this.address = address;
-		if (isNumberValid(phoneNumber)) {
-			this.phoneNumber = phoneNumber;
-		} else {
-			throw new InvalidDataException();
+		if (phoneNumber != null) {
+			if (isNumberValid(phoneNumber)) {
+				this.phoneNumber = phoneNumber;
+			} else {
+				throw new InvalidDataException();
+			}
 		}
 		this.gender = gender;
 	}
 
+	/**
+	 * This method validates phone numbers are valid 10 digit numbers and
+	 * returns true if they are valid
+	 */
 	private boolean isNumberValid(String number) throws NullPointerException {
 		if (number == null) {
 			throw new NullPointerException();
@@ -106,10 +112,6 @@ public class Person {
 		return this.ID;
 	}
 
-	public int compareTo(Person other) {
-		return (this.ID.compareTo(other.ID));
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -130,20 +132,23 @@ public class Person {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("Person: \n");
-		buffer.append("ID: ");
+		buffer.append("\nID: ");
 		buffer.append(this.ID);
-		buffer.append("Last Name: ");
+		buffer.append("\nLast Name: ");
 		buffer.append(this.lastName);
-		buffer.append("First Name: ");
+		buffer.append("\nFirst Name: ");
 		buffer.append(this.firstName);
-		buffer.append("Middle Initial: ");
-		buffer.append(this.midInitial);
-		buffer.append("Address: ");
+		if (this.midInitial != null) {
+			buffer.append("\nMiddle Initial: ");
+			buffer.append(this.midInitial);
+		}
+		buffer.append("\nAddress: ");
 		buffer.append(this.address);
-		buffer.append("Phone Number: ");
-		buffer.append(this.phoneNumber);
-		buffer.append("Gender: ");
+		if (this.phoneNumber != null) {
+			buffer.append("\nPhone Number: ");
+			buffer.append(this.phoneNumber);
+		}
+		buffer.append("\nGender: ");
 		buffer.append(this.gender);
 		return buffer.toString();
 	}

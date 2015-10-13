@@ -23,12 +23,10 @@ public class Department {
 		if (departmentName == null || departmentID == null) {
 			throw new NullPointerException();
 		}
-		if (!(phoneNumber.length() == 10) || (faxNumber.length() == 10)) {
-			throw new InvalidDataException();
-		}
 		this.departmentID = departmentID;
 		this.departmentName = departmentName;
 		this.location = location;
+		// validate phone number and fax number before storing their values
 		if (isNumberValid(phoneNumber)) {
 			this.phoneNumber = phoneNumber;
 		} else {
@@ -103,6 +101,10 @@ public class Department {
 		return this.departmentName;
 	}
 
+	/**
+	 * this method validates phone numbers and fax numbers and returns true if
+	 * they're valid
+	 */
 	private boolean isNumberValid(String number) throws NullPointerException {
 		if (number == null) {
 			throw new NullPointerException();
@@ -136,19 +138,27 @@ public class Department {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("Department: ");
-		buffer.append("Department ID: ");
+		buffer.append("\n\nDepartment: ");
+		buffer.append("\nDepartment ID: ");
 		buffer.append(this.departmentID);
-		buffer.append("Department Name: ");
+		buffer.append("\nDepartment Name: ");
 		buffer.append(this.departmentName);
-		buffer.append("Location: ");
-		buffer.append(this.location);
-		buffer.append("Phone Number: ");
-		buffer.append(this.phoneNumber);
-		buffer.append("Fax Number: ");
-		buffer.append(this.faxNumber);
-		buffer.append("Department Chairperson ID: ");
-		buffer.append(this.departmentChairpersonID);
+		if (this.location != null) {
+			buffer.append("\nLocation: ");
+			buffer.append(this.location);
+		}
+		if (this.phoneNumber != null) {
+			buffer.append("\nPhone Number: ");
+			buffer.append(this.phoneNumber);
+		}
+		if (this.faxNumber != null) {
+			buffer.append("\nFax Number: ");
+			buffer.append(this.faxNumber);
+		}
+		if (this.departmentChairpersonID != null) {
+			buffer.append("\nDepartment Chairperson ID: ");
+			buffer.append(this.departmentChairpersonID);
+		}
 		return buffer.toString();
 	}
 

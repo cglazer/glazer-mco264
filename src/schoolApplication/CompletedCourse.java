@@ -1,5 +1,6 @@
 package schoolApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class CompletedCourse extends Course {
@@ -27,8 +28,9 @@ public class CompletedCourse extends Course {
 		return this.studentID;
 	}
 
-	public GregorianCalendar getCompletedDate() {
-		return this.completedDate;
+	public String getCompletedDate() {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		return formatter.format(this.completedDate);
 	}
 
 	public void setGrade(Grade grade) {
@@ -37,15 +39,15 @@ public class CompletedCourse extends Course {
 
 	@Override
 	public String toString() {
-		StringBuffer buffer= new StringBuffer();
-		buffer.append("\nCompleted Course: ");
+		StringBuffer buffer = new StringBuffer();
 		buffer.append(super.toString());
 		buffer.append("\nStudent ID: ");
 		buffer.append(this.studentID);
 		buffer.append("\nGrade: ");
 		buffer.append(this.grade);
 		buffer.append("\nCompleted Date: ");
-		buffer.append(this.completedDate);
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		buffer.append(formatter.format(this.completedDate.getTime()));
 		return buffer.toString();
 	}
 

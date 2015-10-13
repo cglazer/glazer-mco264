@@ -100,8 +100,7 @@ Silver Springs,Maryland
  
 10331 Issacson Esau B 
 Silver Springs,Maryland 
-2404847932 
-M  25 2.98 RELI 
+2404847932 M  RELI 
 
 10348 Virus Vera W
 Saginaw,Michigan 
@@ -113,7 +112,7 @@ Downs,Kansas
 
 10377 Porgy Bess N 
 Columbus,Ohio 
-6144841771 F   MUSI 
+6144841771 F   MUSC 
 
 10389 Newmann Alfred E 
 Cheyenne,Wyoming 
@@ -144,7 +143,7 @@ Honolulu,Hawaii
 8089193001 F   POLS 
 
 10467 Marx Karl Z 
-Hawthorne,New_Jersey 
+Hawthorne,New Jersey 
 9735513915 M   ECON
 
 10470 Scrooge Ebenezer T 
@@ -152,7 +151,7 @@ Troy,Michigan
 2488134001 M   SOCI
 
 10482 Nightingale Florence K 
-Rochester,New_York 
+Rochester,New York 
 5857175118 F   NURS
  
 10490 Gazelle Gwendolyn D 
@@ -177,7 +176,7 @@ Boise,Idaho
 
 10523 Pavlov Bowser T
 Farmington,Michigan 
-2489421753 F  PSYCH 
+2489421753 F  PSYC 
 
 10530 Chicita Juanita A
 Oklahoma City,Oklahoma 
@@ -237,7 +236,7 @@ Albany,New York
 
 10652 Cicero Marsha R 
 Rapid City,South Dakota 
-6053335910 F   LATI 
+6053335910 F   EDUC
 
 10657 Weerd Dewey L 
 Detroit,Michigan 

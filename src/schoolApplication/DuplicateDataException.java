@@ -1,13 +1,12 @@
 package schoolApplication;
 
-public class InvalidEntryException extends Exception {
+public class DuplicateDataException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public InvalidEntryException(){
+	public DuplicateDataException() {
 		super();
 	}
-
 }

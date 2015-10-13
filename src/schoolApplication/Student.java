@@ -1,7 +1,7 @@
 package schoolApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 public class Student extends Person {
@@ -63,15 +63,16 @@ public class Student extends Person {
 		this.major = major;
 	}
 
-	public GregorianCalendar getEnrolledDate() {
-		return this.enrolledDate;
+	public String getEnrolledDate() {
+		SimpleDateFormat formatter = new SimpleDateFormat();
+		return formatter.format(this.enrolledDate.getTime());
 	}
 
 	public Double getGPA() {
 		return this.GPA;
 	}
 
-	public void setGPA(Double gPA) throws NullPointerException,
+	private void setGPA(Double gPA) throws NullPointerException,
 			InvalidDataException {
 		if (gPA == null) {
 			throw new NullPointerException();
@@ -79,7 +80,11 @@ public class Student extends Person {
 		if (gPA < 0 || gPA > 4) {
 			throw new InvalidDataException();
 		}
-		this.GPA = gPA;
+		if (this.GPA == null) {
+			this.GPA = gPA;
+		} else {
+			this.GPA = ((gPA + this.GPA) / 2);
+		}
 	}
 
 	public Integer getCreditsEarned() {
@@ -91,58 +96,83 @@ public class Student extends Person {
 		if (creditsEarned == null) {
 			throw new NullPointerException();
 		}
-		if (creditsEarned < 1 || creditsEarned > 6) {
+		if (creditsEarned < 0 || creditsEarned > 4) {
 			throw new InvalidDataException();
 		}
 		this.creditsEarned = creditsEarned;
 	}
 
-	public GregorianCalendar getDateOfBirth() {
-		return this.dateOfBirth;
+	public String getDateOfBirth() {
+		SimpleDateFormat formatter = new SimpleDateFormat();
+		return formatter.format(this.dateOfBirth.getTime());
 	}
 
 	public String getSocialSecurityNumber() {
 		return this.socialSecurityNumber;
 	}
 
-	public ArrayList<CompletedCourse> getCompletedCourses() {
-		return this.completedCourses;
+	/**
+	 * This method returns an arrayList of completed courses
+	 * 
+	 * @return
+	 */
+	public String getCompletedCourses() {
+		return this.completedCourses.toString();
 	}
 
+	/**
+	 * this method verifies that a completed course wasn't yet added and then
+	 * adds it to the arrayList of completed courses
+	 */
 	public void addCompletedCourse(Course c, Grade g)
-			throws NullPointerException, InvalidDataException {
+			throws NullPointerException, InvalidDataException,
+			DuplicateDataException {
 		CompletedCourse completed = new CompletedCourse(c.getCourseID(),
 				c.getDescription(), c.getNumCredits(), c.getDepartmentID(),
 				super.getID(), g);
+		if (this.completedCourses.contains(completed)) {
+			throw new DuplicateDataException();
+		}
 		this.completedCourses.add(completed);
+		// add the credits earned
 		this.creditsEarned += completed.getNumCredits();
+		// adjusts the gpa
+		setGPA(g.getGrade());
 	}
 
+	/**
+	 * this method finds a course completed by a student or throws an exception
+	 * if the course wasn't found
+	 * */
 	public String findCompletedCourse(String courseID) throws NotFoundException {
 		for (CompletedCourse c : completedCourses) {
 			if (c.getCourseID().equals(courseID)) {
 				return c.toString() + "\nCourseID: " + c.getCourseID();
 			}
 		}
-
 		throw new NotFoundException();
-
 	}
 
+	/**
+	 * This method returns the grade a student received on a course
+	 */
 	public Grade getGradeofCourse(String courseID) throws NullPointerException,
-			InvalidIDException {
+			NotFoundException {
 		if (courseID == null) {
 			throw new NullPointerException();
 		}
 		for (CompletedCourse c : completedCourses) {
-			if (c.getCourseID().equals(courseID)) {
+			if (c.getCourseID().equalsIgnoreCase(courseID)) {
 				return c.getGrade();
-
 			}
 		}
-		throw new InvalidIDException();
+		throw new NotFoundException();
 	}
 
+	/**
+	 * This method returns an array of courses taken by a student in a specific
+	 * department
+	 */
 	public ArrayList<String> getCoursesbyDepartment(String departmentID)
 			throws NullPointerException {
 		if (departmentID == null) {
@@ -150,15 +180,22 @@ public class Student extends Person {
 		}
 		ArrayList<String> completedCoursesByDepartment = new ArrayList<String>();
 		for (CompletedCourse c : completedCourses) {
-			if (c.getDepartmentID().equals(departmentID)) {
+			if (c.getDepartmentID().equalsIgnoreCase(departmentID)) {
 				completedCoursesByDepartment.add(c.getDescription());
 			}
 		}
 		return completedCoursesByDepartment;
 	}
 
-	public ArrayList<String> getCoursesbyGrade(Grade g)
-			throws NullPointerException {
+
+	/**
+	 * this method returns an arrayList of courses where the student received a
+	 * specific grade
+	 * 
+	 * @throws NotFoundException
+	 */
+	public ArrayList<String> getCoursesbyGrade(Grade g) throws NullPointerException,
+			NotFoundException {
 		if (g == null) {
 			throw new NullPointerException();
 		}
@@ -168,51 +205,39 @@ public class Student extends Person {
 				getCoursesByGrade.add(c.getDescription());
 			}
 		}
+		if (getCoursesByGrade.size() > 1) {
+			throw new NotFoundException();
+		}
 		return getCoursesByGrade;
 	}
 
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("Student: \n");
-		buffer.append("Major: ");
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		buffer.append("\n\nStudent: ");
+		buffer.append(super.toString());
+		buffer.append("\nMajor: ");
 		buffer.append(this.major);
-		buffer.append("Date of Birth: ");
-		buffer.append(this.dateOfBirth);
-		buffer.append("GPA: ");
+		if (this.dateOfBirth != null) {
+			buffer.append("\nDate of Birth: ");
+			buffer.append(formatter.format(this.dateOfBirth.getTime()));
+		}
+		if (this.enrolledDate != null) {
+			buffer.append("\nEnrolled Date: ");
+			buffer.append(formatter.format(this.enrolledDate.getTime()));
+		}
+		buffer.append("\nGPA: ");
 		buffer.append(this.GPA);
-		buffer.append("Credits Earned: ");
+		buffer.append("\nCredits Earned: ");
 		buffer.append(this.creditsEarned);
-		buffer.append("Social Security Number: ");
-		buffer.append(this.socialSecurityNumber);
-		buffer.append("Completed Courses: ");
+		if (this.socialSecurityNumber != null) {
+			buffer.append("\nSocial Security Number: ");
+			buffer.append(this.socialSecurityNumber);
+		}
+		buffer.append("\nCompleted Courses: ");
 		buffer.append(this.completedCourses);
 		return buffer.toString();
 	}
-
-	/**
-	 * Comparator to sort by ID
-	 */
-	public static Comparator<Student> IDComparator = new Comparator<Student>() {
-
-		@Override
-		public int compare(Student e1, Student e2) {
-			return (int) (e1.getID() - e2.getID());
-		}
-	};
-
-	/**
-	 * Comparator to sort by name
-	 */
-	public static Comparator<Student> nameComparator = new Comparator<Student>() {
-
-		@Override
-		public int compare(Student e1, Student e2) {
-			if (e1.getLastName().equals(e2.getLastName())) {
-				return e1.getFirstName().compareTo(e2.getFirstName());
-			}
-			return e1.getLastName().compareTo(e2.getLastName());
-		}
-	};
 
 }

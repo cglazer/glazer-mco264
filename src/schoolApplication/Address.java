@@ -31,15 +31,17 @@ public class Address {
 		if (stateCode == null) {
 			throw new InvalidDataException();
 		}
+		this.state = stateCode;
 		this.street = street;
 		this.city = city;
-		this.state = stateCode;
 
 	}
 
+	/**
+	 * This method validates zipcodes and returns true when it is valid
+	 */
 	private boolean isZipValid(String zipCode) {
 		Pattern validateZip = Pattern.compile("\\d{5}");
-
 		Matcher matcher = validateZip.matcher(zipCode);
 		if (matcher.matches()) {
 			return true;
@@ -53,10 +55,23 @@ public class Address {
 		return false;
 	}
 
+	/**
+	 * this method finds the enumerator value of a state
+	 */
 	private static USState getStateCode(String state) {
-		for (USState theState : USState.values()) {
-			if (theState.name().equalsIgnoreCase(state)) {
-				return theState;
+		// when given the full state name
+		if (state.length() > 2) {
+			for (USState theState : USState.values()) {
+				if (theState.getName().equalsIgnoreCase(state.trim())) {
+					return theState;
+				}
+			}
+			// when given the abbreviation..it gets validated
+		} else {
+			for (USState theState : USState.values()) {
+				if (theState.name().equalsIgnoreCase(state.toUpperCase())) {
+					return theState;
+				}
 			}
 		}
 		return null; // couldn't find the state
@@ -119,14 +134,13 @@ public class Address {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("Address: \n");
-		buffer.append("Street: ");
+		buffer.append("\nStreet: ");
 		buffer.append(this.street);
-		buffer.append("City: ");
+		buffer.append("\nCity: ");
 		buffer.append(this.city);
-		buffer.append("State: ");
+		buffer.append("\nState: ");
 		buffer.append(this.state);
-		buffer.append("Zip Code: ");
+		buffer.append("\nZip Code: ");
 		buffer.append(this.zipCode);
 		return buffer.toString();
 	}

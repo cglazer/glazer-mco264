@@ -9,4 +9,4 @@ MCO104;Computer Concepts;D101;4
 MCO141;Introduction to Programming;D101;3
 MCO232;Advanced Programming;D101;3
 MCO242;Data Structures;D101;3
-MCO343;Database Concepts;D101;3 
+MCO343;Database Concepts;D101;3

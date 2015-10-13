@@ -14,26 +14,30 @@ public class Course {
 				|| departmentID == null) {
 			throw new NullPointerException();
 		}
+		//a course can give at most 4 credits
 		if (numCredits < 0 || numCredits > 4) {
 			throw new InvalidDataException();
 		}
-
+		this.numCredits = numCredits;
+		this.courseID = courseID;
+		this.description = description;
+		this.departmentID = departmentID;
 	}
 
 	public String getCourseID() {
-		return courseID;
+		return this.courseID;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public Integer getNumCredits() {
-		return numCredits;
+		return this.numCredits;
 	}
 
 	public String getDepartmentID() {
-		return departmentID;
+		return this.departmentID;
 	}
 
 	public int CompareTo(Course other) {
@@ -60,7 +64,7 @@ public class Course {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("Course: \n");
+		buffer.append("\n\nCourse: ");
 		buffer.append("\nCourse ID: ");
 		buffer.append(this.courseID);
 		buffer.append("\nDescription: ");

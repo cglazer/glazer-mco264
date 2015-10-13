@@ -1,13 +1,12 @@
 package schoolApplication;
 
-public class InvalidIDException extends Exception {
+public class InvalidEmployeeException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public InvalidIDException(){
+	public InvalidEmployeeException() {
 		super();
 	}
-
 }

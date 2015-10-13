@@ -10,7 +10,7 @@ public enum Grade {
 		this.gPA = grade;
 	}
 
-	private double getGrade() {
+	public double getGrade() {
 		return this.gPA;
 	}
 
