@@ -2,20 +2,22 @@ package randomAccessStudentDataLLIndex;
 
 import java.io.Serializable;
 
-import randomAccessStudentData.StudentIndexRec;
-
-//keeps a reference to a specific student index record
+//keeps a reference to a specific data
 //keeps a reference to the next Node in the linked list
-public class Node<T> implements Serializable {
-   private StudentIndexRec data;
+public class Node<T extends Comparable<T>> implements Serializable {
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+private T data;
    private Node<T> nextNode;
    
-   public Node(StudentIndexRec data){
+   public Node(T data){
 	   this.data = data;
 	   this.nextNode = null;
    }
    
-   public Node(StudentIndexRec data, Node<T> nextNode){
+   public Node(T data, Node<T> nextNode){
 	   this.data = data;
 	   this.nextNode = nextNode;
    }
@@ -28,11 +30,11 @@ public class Node<T> implements Serializable {
 	   return this.nextNode;
    }
    
-   public void setData(StudentIndexRec data){
+   public void setData(T data){
 	   this.data = data;
    }
    
-   public StudentIndexRec getData(){
+   public T getData(){
 	   return this.data;
    }
    

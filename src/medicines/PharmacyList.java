@@ -18,11 +18,10 @@ public class PharmacyList implements Serializable {
 	private ArrayList<CompanyNameIndex> companyNames;
 	transient private RandomAccessFile companyData;
 
-	// consturctor
+	// constructor
 	public PharmacyList() {
 		companyCodes = new ArrayList<CompanyCodeIndex>();
 		companyNames = new ArrayList<CompanyNameIndex>();
-
 	}
 
 	public void connectToData(String fileName) throws FileNotFoundException {

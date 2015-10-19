@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import randomAccessExceptions.DuplicateDataException;
 import randomAccessExceptions.NotFoundException;
+import randomAccessStudentDataCW.InvalidPermissionException;
 
 public class UIManageStudentBalance {
 	final static int EXIT = 10;
@@ -38,25 +39,24 @@ public class UIManageStudentBalance {
 		   try{
 		       studBalances = new ManageStudentBalances(indexFile,randomFile);
 		      }
-		   catch(Exception e){
-			     if (e instanceof FileNotFoundException){
+		   catch( FileNotFoundException ex1){
 				   System.out.println("file not found, contact IT");
 				   System.exit(1);
 			   }
-			  else{
-				 if (e instanceof IOException ){
+			catch( IOException ex2 ){
 					System.out.println("Cant read index file");
 					System.exit(1);
 				}
-			}
+		    catch(ClassNotFoundException ex3){
+		    	    System.out.println("class set up inconsistency - can't restore data..., contact IT");
+		    	    System.exit(1);
+		    }
 			
-		   }  //end catch
 		
 		}  //end not first time
 		else{    //first time system is being used
-			System.out.println("What is the maximum number of students you anticipate?");
-			int maxStudents = keyboard.nextInt();
-			studBalances = new ManageStudentBalances(maxStudents,randomFile);
+			
+			studBalances = new ManageStudentBalances(randomFile);
 			
 		}
 		int choice;
@@ -71,21 +71,17 @@ public class UIManageStudentBalance {
 			   try{
 			      studBalances.addStudentRecord(studentID, studentBalance);
 			   }
-			   catch(Exception e){
-				   if (e instanceof FileNotFoundException){
+			   catch(FileNotFoundException ex1){
 					   System.out.println("cant enter student data , file not found");
 				   }
-				   else{
-					   if (e instanceof DuplicateDataException){
+				catch(DuplicateDataException ex2){
 						   System.out.println("duplicate student id - verify the data");
 					   }
-					   else{
-						   if (e instanceof IOException){
+				catch( IOException ex3){
 							   System.out.println("contact IT - can't access data");
-						   }
-					   }
-				   }
-			   } //end catch
+					   } //end catch
+					
+			
 			   break;
 		   case 2:  //view student data
 			   System.out.println("enter student id :");
@@ -94,22 +90,16 @@ public class UIManageStudentBalance {
 			      double balance = studBalances.getStudentBalance(studentID);
 			      System.out.println("Student " + studentID + " Balalnce " + balance);
 			   }
-			   catch(Exception e){
-				   if (e instanceof NotFoundException ){
+			   catch( NotFoundException ex1 ){
 					   System.out.println("student with id " + studentID + " not in the system");
 				   }
-				   else{
-					   if (e instanceof FileNotFoundException){
+			   catch( FileNotFoundException ex2){
 						    System.out.println("please verify the file name and path - file not found");
 					   }
-					   else{
-						   if (e instanceof IOException){
+			   catch( IOException ex3){
 							   System.out.println("contact IT - data files are corrupt");
-						   }
-					   }
-					  
-				   }
-			   }  //end catch
+						   } //end catch
+					
 			   break;
 		   case 3:  //list current students
 			   System.out.println(studBalances.toString());
@@ -135,23 +125,25 @@ public class UIManageStudentBalance {
 			   try{
 			   if (transType ==1){
 				  
-				   studBalances.addToStudentBalance(studentID, amount);
+				   try {
+					studBalances.addToStudentBalance(studentID, amount);
+				} catch (InvalidPermissionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				  
 			   }
 			   else{
 				   studBalances.payStudentBalance(studentID, amount);
 			   }
 		       }
-			   catch(Exception e){
-				   if (e instanceof NotFoundException){
+			   catch( NotFoundException ex1){
 					   System.out.println("student " + studentID + " record cant be found");
 				   }
-				   else{
-					   if (e instanceof IOException ){
+				catch( IOException ex2 ){
 						   System.out.println("problem reading the data files");
 					   }
-				   }
-			   }//end catch
+				   
 			   break;
 		   case EXIT:
 			   System.out.println("thank you for using the Student Balances System");
@@ -159,18 +151,15 @@ public class UIManageStudentBalance {
 			   try{
 				studBalances.shutdown(indexFile);
 			   }
-			   catch(Exception e){
-				   if (e instanceof FileNotFoundException){
+			   catch(FileNotFoundException ex1){
 					   System.out.println("files not found - bad news -  data cant be saved");
 				       System.exit(1);
 				   }
-				   else {
-					   if (e instanceof IOException){
+			   catch( IOException ex2){
 						   System.out.println("problem writing data to files - contact IT");
 					       System.exit(1);
 					   }
-				   }
-			   }
+				  
 			   System.exit(0);  //end the application
 			   break;
 		 
@@ -180,7 +169,7 @@ public class UIManageStudentBalance {
 		}while (choice != EXIT);
 		
 		
-	
+	keyboard.close();
 		
 		
 	}
@@ -188,6 +177,7 @@ public class UIManageStudentBalance {
 	private static int menu(){
 		
 		int choice;
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		do{
 		System.out.println("\n1. Add a Student" +

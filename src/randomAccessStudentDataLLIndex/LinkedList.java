@@ -2,31 +2,37 @@ package randomAccessStudentDataLLIndex;
 
 import java.io.Serializable;
 
-import randomAccessExceptions.NotFoundException;
-import randomAccessStudentData.StudentIndexRec;
 
-public class LinkedList<T> implements Serializable{
+import randomAccessExceptions.NotFoundException;
+
+
+public class LinkedList<T extends Comparable<T>> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Node<T> head;
 	
-	public StudentIndexInternalIterator iter;
+	public LLIterator iter;
 	
 	public LinkedList(){
 		head = null;
-		iter = new StudentIndexInternalIterator();
+		iter = new LLIterator();
 	}
 	
-	public void add(StudentIndexRec indexRec){
+	public void add(T data){
 		Node<T> currentNode;
 		Node<T> prevNode;
 		if (head == null){   //the first Node in the list points to the student index record
-			head = new Node<T>(indexRec);
+			head = new Node<T>(data);
 		}
 		else{
-			Node<T> newNode = new Node<T>(indexRec);  //allocate a new Node
+			Node<T> newNode = new Node<T>(data);  //allocate a new Node
 			//find the right spot for the Node inside the list
 			currentNode = prevNode = head;
 			
-			while (currentNode != null  && indexRec.compareTo(currentNode.getData())>0){
+			while (currentNode != null  && data.compareTo(currentNode.getData())>0){
 				prevNode = currentNode;
 				currentNode = currentNode.getNext(); //move along to next Node
 			}
@@ -46,12 +52,12 @@ public class LinkedList<T> implements Serializable{
 		}
 	}
 	
-	public void remove (Integer studentID)throws NotFoundException{
+	public void remove (T data)throws NotFoundException{
 		Node<T> currentNode = head;
 		Node<T> prevNode = head;
 		
 		while (currentNode != null){
-			if (currentNode.getData().getStudentID().equals(studentID)){
+			if (currentNode.getData().equals(data)){
 				//this is the Node that must be removed
 				if (currentNode == head){
 					head = head.getNext();  //must reset the head
@@ -71,10 +77,10 @@ public class LinkedList<T> implements Serializable{
 		throw new NotFoundException();
 	}
 	
-	public StudentIndexRec find(Integer studentID)throws NotFoundException{
+	public T find(T data)throws NotFoundException{
 		Node<T> currentNode = head;  //start to iterate through the list
 		while (currentNode  != null){
-			if (currentNode.getData().getStudentID().equals(studentID)){
+			if (currentNode.getData().equals(data)){
 				return currentNode.getData();
 			}
 			currentNode = currentNode.getNext(); //move further down the list
@@ -82,11 +88,16 @@ public class LinkedList<T> implements Serializable{
 		throw new NotFoundException();
 	}
 
-	class StudentIndexInternalIterator implements Serializable{
+	class LLIterator implements Serializable{
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private Node<T> currentNode;
 		
-		public StudentIndexInternalIterator(){
+		
+		public LLIterator(){
 			currentNode = head;
 		}
 		
@@ -103,10 +114,10 @@ public class LinkedList<T> implements Serializable{
 			}
 		}
 		
-		public StudentIndexRec next(){
-			StudentIndexRec currIndexRec = currentNode.getData();
+		public T next(){
+			T data = currentNode.getData();
 			currentNode = currentNode.getNext();//move to next Node
-			return currIndexRec;
+			return data;
 		}
 	}
 }

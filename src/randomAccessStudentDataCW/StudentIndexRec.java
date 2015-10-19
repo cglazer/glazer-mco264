@@ -2,7 +2,8 @@ package randomAccessStudentDataCW;
 
 import java.io.Serializable;
 
-public class StudentIndexRec implements Serializable, Comparable<StudentIndexRec> {
+public class StudentIndexRec implements Comparable<StudentIndexRec>,
+		Serializable {
 	/**
 	 * 
 	 */
@@ -44,5 +45,5 @@ public class StudentIndexRec implements Serializable, Comparable<StudentIndexRec
 			return false;
 		return true;
 	}
-	
+
 }
