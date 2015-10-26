@@ -41,6 +41,7 @@ public class StudentsIndex implements Serializable {
 	 *                class definition
 	 * @param fileName
 	 */
+	@SuppressWarnings("unchecked")
 	public StudentsIndex(String fileName) throws ClassNotFoundException,
 			FileNotFoundException, IOException {
 		ObjectInputStream inputStream = new ObjectInputStream(
@@ -49,6 +50,7 @@ public class StudentsIndex implements Serializable {
 		// all the references
 		// and the StudentIndexRec instances it is referencing
 		index = (LinkedList<StudentIndexRec>) inputStream.readObject();
+		
 		inputStream.close();
 
 	}

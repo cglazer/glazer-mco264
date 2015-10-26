@@ -168,7 +168,6 @@ public class UIManageStudentBalance {
 		 } 
 		}while (choice != EXIT);
 		
-		
 	keyboard.close();
 		
 		

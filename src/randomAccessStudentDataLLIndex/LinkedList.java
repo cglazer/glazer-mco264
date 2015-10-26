@@ -3,6 +3,8 @@ package randomAccessStudentDataLLIndex;
 import java.io.Serializable;
 
 
+import java.util.Iterator;
+
 import randomAccessExceptions.NotFoundException;
 
 
@@ -87,7 +89,11 @@ public class LinkedList<T extends Comparable<T>> implements Serializable{
 		}
 		throw new NotFoundException();
 	}
-
+	
+	public Iterator<T> iterator(){
+		LLIterator<T> theIter = new LLIterator<T>(head);
+		
+//private internal iterator
 	class LLIterator implements Serializable{
 		
 		/**
