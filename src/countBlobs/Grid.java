@@ -4,10 +4,9 @@ import java.util.Random;
 import java.util.Stack;
 
 public class Grid {
-	protected int rows;
-	protected int cols;
-
-	protected Cell[][] grid;
+	private int rows;
+	private int cols;
+	private Cell[][] grid;
 
 	public Grid(int rows, int cols, int percentage) throws InvalidGridException {
 		if (rows <= 0 || cols <= 0 || percentage <= 0 || percentage >= 100) {
@@ -16,7 +15,6 @@ public class Grid {
 		this.rows = rows;
 		this.cols = cols;
 		this.grid = new Cell[this.rows][this.cols];
-
 		int randInt;
 		Random rand = new Random();
 		for (int i = 0; i < this.rows; i++) {
@@ -27,48 +25,46 @@ public class Grid {
 					grid[i][j].setBlobTrue();
 				} else {
 					grid[i][j] = new Cell(i, j);
-					grid[i][j].setBlobFalse();
 				}
 			}
 		}
 	}
 
 	public int blobCount() {
-		// returns the number of blobs in the grid
 		int count = 0;
-		// count blobs
+		// iterator to go through the grid in sequential order
 		BlobIterator iter = new BlobIterator(this.grid);
-		iter.reset();
+		// stack to hold cells with a blob in it
 		Stack<Cell> stack = new Stack<Cell>();
-		Cell current=grid[0][0];
-		do{
+		// create an iterator that can jump to different cells that are
+		// called from the stack
+		BlobIterator stackIter = new BlobIterator(this.grid);
+		Cell current = grid[0][0];
+		do {
+			// only go further if the cell wasn't checked yet and it has a blob
 			if (!current.isVisited() && current.hasBlob()) {
 				current.setVisited();
-				Cell above = iter.above();
+				// only need to check below and to the right of the cell because
+				// to left and above was already checked earlier --it's moving
+				// sequential through the grid
 				Cell below = iter.below();
-				Cell toLeft = iter.toLeft();
 				Cell toRight = iter.toRight();
-				if (above != null && above.hasBlob()) {
+				if (below != null && below.hasBlob()) {
 					stack.add(current);
 					count++;
-					System.out.println(current.getRow() + ", " + current.getColumn());
-				} else if (below != null && below.hasBlob()) {
-					stack.add(current);
-					count++;
-					System.out.println(current.getRow() + ", " + current.getColumn());
-				} else if (toLeft != null && toLeft.hasBlob()) {
-					stack.add(current);
-					count++;
-					System.out.println(current.getRow() + ", " + current.getColumn());
 				} else if (toRight != null && toRight.hasBlob()) {
 					stack.add(current);
 					count++;
-					System.out.println(current.getRow() + ", " + current.getColumn());
 				}
-				BlobIterator stackIter = new BlobIterator(this.grid);
+				Cell above = null;
+				Cell toLeft = null;
 				while (!stack.empty()) {
 					Cell check = stack.pop();
-					stackIter.setCounter(check.row, check.column);
+					// set the iterator to the top of the stack and check all
+					// sides of each cell in the stack and add each side cell if
+					// and only if that cell has a blob and it wasn't visited
+					// yet
+					stackIter.setCounter(check.getRow(), check.getColumn());
 					above = stackIter.above();
 					below = stackIter.below();
 					toLeft = stackIter.toLeft();
@@ -77,36 +73,34 @@ public class Grid {
 						if (above.hasBlob()) {
 							stack.add(above);
 						}
-						grid[above.getRow()][above.getColumn()].setVisited();
 						above.setVisited();
 					}
 					if (below != null && !below.isVisited()) {
 						if (below.hasBlob()) {
 							stack.add(below);
 						}
-					grid[below.getRow()][below.getColumn()].setVisited();
-					below.setVisited();
+						below.setVisited();
 					}
 					if (toLeft != null && !toLeft.isVisited()) {
 						if (toLeft.hasBlob()) {
 							stack.add(toLeft);
 						}
-						grid[toLeft.getRow()][toLeft.getColumn()].setVisited();
 						toLeft.setVisited();
 					}
 					if (toRight != null && !toRight.isVisited()) {
 						if (toRight.hasBlob()) {
 							stack.add(toRight);
 						}
-						grid[toRight.getRow()][toRight.getColumn()].setVisited();
 						toRight.setVisited();
 					}
 
 				}
 			}
-			current=iter.next();
-		}while(iter.hasNext());
-
+			// not necessary to check the last box in the grid- if it would be a
+			// blob, it would be already checked
+			current = iter.next();
+		} while (iter.hasNext());
+		// return the number of blobs in the grid
 		return count;
 	}
 

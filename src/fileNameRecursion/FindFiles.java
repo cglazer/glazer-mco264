@@ -10,8 +10,8 @@ public class FindFiles {
 				for (int i = 0; i < number; i++) {
 					builder.append("\t");
 				}
-				builder.append(String.format("%-20s Size: %8d%n", file
-						.getName().toUpperCase(), file.length()));
+				builder.append(String.format("%-20s \n", file.getName()
+						.toUpperCase()));
 				recurFile(file, number + 1, builder);
 			} else {
 				for (int i = 0; i < number; i++) {

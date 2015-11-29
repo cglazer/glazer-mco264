@@ -3,38 +3,37 @@ package countBlobs;
 public class Cell {
 	private boolean visited;
 	private boolean hasBlob;
-	int row;
-	int column;
+	private int row;
+	private int column;
 
 	public Cell(int row, int column) {
-		visited = false;
-	this.row=row;
-	this.column=column;
+		this.visited = false;
+		this.row = row;
+		this.column = column;
+		this.hasBlob = false;
 	}
-public int getRow(){
-	return this.row;
-}public int getColumn(){
-	return this.column;
-}
+
+	public int getRow() {
+		return this.row;
+	}
+
+	public int getColumn() {
+		return this.column;
+	}
+
 	public void setVisited() {
-		visited = true;
+		this.visited = true;
 	}
 
 	public boolean isVisited() {
-		return visited;
+		return this.visited;
 	}
 
 	public void setBlobTrue() {
-		hasBlob = true;
+		this.hasBlob = true;
 	}
 
 	public boolean hasBlob() {
-		return hasBlob;
+		return this.hasBlob;
 	}
-
-	public void setBlobFalse() {
-		hasBlob=false;
-		
-	}
-
 }

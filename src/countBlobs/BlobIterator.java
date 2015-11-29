@@ -6,15 +6,14 @@ public class BlobIterator {
 	private int columns;
 	private int rowCounter;
 	private int columnCounter;
-	
 
-		public BlobIterator(Cell grid[][]){
+	public BlobIterator(Cell grid[][]) {
 		this.grid = grid;
 		this.rows = grid.length;
 		this.columns = this.grid[this.rowCounter].length;
 		this.rowCounter = 0;
 		this.columnCounter = 0;
-		
+
 	}
 
 	public boolean hasNext() {
@@ -52,7 +51,7 @@ public class BlobIterator {
 	}
 
 	public Cell toRight() {
-		if (columnCounter < columnCounter - 1) {
+		if (columnCounter < this.columns - 1) {
 			return grid[this.rowCounter][this.columnCounter + 1];
 		}
 		return null;
@@ -64,13 +63,16 @@ public class BlobIterator {
 		}
 		return null;
 	}
-public void setCounter(int row, int column){
-	if(row<rows){
-		this.rowCounter= row;
-	}if(column<columns){
-		this.columnCounter=column;
+
+	public void setCounter(int row, int column) {
+		if (row < rows) {
+			this.rowCounter = row;
+		}
+		if (column < columns) {
+			this.columnCounter = column;
+		}
 	}
-}
+
 	public void reset() {
 		this.rowCounter = 0;
 		this.columnCounter = 0;
