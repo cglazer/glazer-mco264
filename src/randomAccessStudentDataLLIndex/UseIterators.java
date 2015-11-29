@@ -13,6 +13,5 @@ public class UseIterators {
 		while (names.iter.hasNext()) {
 			System.out.println(names.iter.next());
 		}
-
 	}
 }

@@ -7,7 +7,8 @@ public class ManageTicTacToe {
 		System.out.println("Thank you for choosing to play Tic-tac-toe!");
 		Scanner input = new Scanner(System.in);
 		String playAgain = null;
-
+		int row;
+		int column;
 		do {
 			TicTacToe board = new TicTacToe();
 			int player = 0;
@@ -15,11 +16,16 @@ public class ManageTicTacToe {
 			System.out.println(board.showBoard());
 			do {
 				if (player % 2 == 0) {
-					System.out.println("Enter a row for player X (0, 1, or 2)");
-					int row = input.nextInt();
-					System.out
-							.println("Enter a column for player X (0, 1, or 2)");
-					int column = input.nextInt();
+					do {
+						System.out
+								.println("Enter a row for player X (0, 1, or 2)");
+						row = input.nextInt();
+					} while (row < 0 || row > 2);
+					do {
+						System.out
+								.println("Enter a column for player X (0, 1, or 2)");
+						column = input.nextInt();
+					} while (column < 0 || column > 2);
 					try {
 						set = board.addMark('X', row, column);
 						System.out.println(board.showBoard());
@@ -31,12 +37,16 @@ public class ManageTicTacToe {
 								.println("Sorry. This space was already filled. Please try again.");
 					}
 				} else {
-					System.out.println("Enter a row for player O (0, 1, or 2)");
-					int row = input.nextInt();
-					System.out
-							.println("Enter a column for player O (0, 1, or 2)");
-					int column = input.nextInt();
-
+					do {
+						System.out
+								.println("Enter a row for player O (0, 1, or 2)");
+						row = input.nextInt();
+					} while (row < 0 || row > 2);
+					do {
+						System.out
+								.println("Enter a column for player O (0, 1, or 2)");
+						column = input.nextInt();
+					} while (column < 0 || column > 2);
 					try {
 						set = board.addMark('O', row, column);
 						System.out.println(board.showBoard());
@@ -50,7 +60,13 @@ public class ManageTicTacToe {
 				}
 			} while (!set && player < 9);
 			if (set) {
-				System.out.println("Congratulations! You won!!");
+				if (player % 2 == 0) {
+					System.out.println("Congratulations! Player O won!!");
+				} else {
+					System.out.println("Congratulations! Player X won!!");
+				}
+			} else {
+				System.out.println("Game over.");
 			}
 			System.out.println("Would you like to play again?");
 			playAgain = input.next();

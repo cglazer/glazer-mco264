@@ -130,7 +130,7 @@ public class StudentsIndex implements Serializable {
 		}
 
 		public StudentIndexRec next() {
-			return index.iter.next();
+			return (StudentIndexRec) index.iter.next();
 		}
 
 		public void reset() {
