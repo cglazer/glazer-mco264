@@ -44,18 +44,10 @@ public class Grid {
 			// only go further if the cell wasn't checked yet and it has a blob
 			if (!current.isVisited() && current.hasBlob()) {
 				current.setVisited();
-				// only need to check below and to the right of the cell because
-				// to left and above was already checked earlier --it's moving
-				// sequential through the grid
-				Cell below = iter.below();
-				Cell toRight = iter.toRight();
-				if (below != null && below.hasBlob()) {
-					stack.add(current);
-					count++;
-				} else if (toRight != null && toRight.hasBlob()) {
-					stack.add(current);
-					count++;
-				}
+				count++;
+				stack.add(current);
+				Cell below = null;
+				Cell toRight = null;
 				Cell above = null;
 				Cell toLeft = null;
 				while (!stack.empty()) {
