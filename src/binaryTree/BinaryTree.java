@@ -262,4 +262,26 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 		return false;
 	}
+
+	public void reorganizeR() {
+		ArrayList<T> array = new ArrayList<T>();
+		array = traverseInOrder(array);
+		T mid = array.remove(array.size() / 2);
+		BNode<T> newRoot = new BNode<T>(mid);
+		this.root = newRoot;
+		for (int i = 0; i < array.size(); i++) {
+			insertRecur(array.get(i));
+		}
+	}
+
+	public void reorganize() {
+		ArrayList<T> array = new ArrayList<T>();
+		array = traverse(array);
+		T mid = array.remove(array.size() / 2);
+		BNode<T> newRoot = new BNode<T>(mid);
+		this.root = newRoot;
+		for (int i = 0; i < array.size(); i++) {
+			insert(array.get(i));
+		}
+	}
 }
