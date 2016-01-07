@@ -17,6 +17,10 @@ public class TryIncrement {
 		System.out.println(3%5);
 		System.out.println(2%8);
 		System.out.println(8%2);
+		
+		
+		System.out.println(Character.getNumericValue('A'));
+		System.out.println(String.valueOf(65));
 	}
 
 }

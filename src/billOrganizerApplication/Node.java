@@ -1,7 +1,6 @@
-package randomAccessStudentDataLLIndex;
+package billOrganizerApplication;
 
 import java.io.Serializable;
-
 
 public class Node<T extends Comparable<T>> implements Serializable {
 	/**
